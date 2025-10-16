@@ -153,3 +153,50 @@ function renderIgFallback(){
   }, { threshold:.06 });
   els.forEach(el => io.observe(el));
 })();
+
+
+// Side-drawer mobile menu with overlay and ESC close
+(function mobileDrawer(){
+  const btn = document.getElementById('menuToggle');
+  const panel = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  if(!btn || !panel || !overlay) return;
+
+  const body = document.body;
+
+  function open(){
+    panel.hidden = false;
+    overlay.hidden = false;
+    // force reflow to apply transition after hidden false
+    panel.getBoundingClientRect();
+    overlay.getBoundingClientRect();
+    panel.classList.add('open');
+    overlay.classList.add('show');
+    btn.classList.add('active');
+    body.classList.add('noscroll');
+    document.addEventListener('keydown', onKey);
+  }
+  function close(){
+    panel.classList.remove('open');
+    overlay.classList.remove('show');
+    btn.classList.remove('active');
+    body.classList.remove('noscroll');
+    // wait for animation then hide
+    setTimeout(()=>{
+      panel.hidden = true;
+      overlay.hidden = true;
+    }, 240);
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e){
+    if(e.key === 'Escape') close();
+  }
+
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if(panel.classList.contains('open')) close(); else open();
+  });
+  overlay.addEventListener('click', close);
+  // close when tapping a link inside the drawer
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+})();
