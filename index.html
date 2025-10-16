@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Koy Gee Photography — Urban & Street</title>
+  <meta name="description" content="Urban & street photography portfolio by Koy Gee — Seattle & San Francisco.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">Koy Gee Photography</div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn">Inquire</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" style="background-image:url('images/seattle-waterfront.jpg')">
+    <div class="overlay"></div>
+    <div class="hero-content container">
+      <h1>Urban stories through light and motion</h1>
+      <p>Street & city photography from Seattle to San Francisco — neon nights, quiet corners, honest portraits.</p>
+      <div class="cta">
+        <a href="#work" class="btn">See my work</a>
+        <a href="#contact" class="btn btn-outline">Inquire</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="work" class="work">
+      <div class="section-head">
+        <h2>Selected Work</h2>
+        <div class="filters" id="filters"></div>
+      </div>
+      <div id="gallery" class="masonry"></div>
+    </section>
+
+    <section id="services" class="services">
+      <h2>Services & Pricing</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Urban Portrait Session</h3>
+          <p class="price">$350</p>
+          <ul>
+            <li>1 hour on-location (up to 2 spots)</li>
+            <li>10 edited photos</li>
+            <li>Private online gallery</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Street Documentary</h3>
+          <p class="price">$600</p>
+          <ul>
+            <li>2 hours storytelling coverage</li>
+            <li>Creative direction</li>
+            <li>High-res digital files</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Brand / Editorial</h3>
+          <p class="price">Custom</p>
+          <ul>
+            <li>Half or full day</li>
+            <li>Creative consulting</li>
+            <li>Commercial rights</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-grid">
+        <img src="images/portrait-smile.jpg" alt="Portrait of Koy">
+        <div>
+          <h2>About Koy</h2>
+          <p>I’m an <strong>amateur photographer</strong> with a growing passion for capturing the pulse of the city. I’m always <strong>seeking a challenge</strong>, drawn to new places, new light, and the moments that often go unseen.</p>
+          <p>Photography started as a curiosity and quickly became a way to slow down and really look — to find meaning in movement, people, and shadows. Whether it’s neon reflections at night or the quiet rhythm of a street at dawn, I love chasing those small details that make a scene feel alive.</p>
+          <div class="stats">
+            <div><span>200+</span><small>Sessions</small></div>
+            <div><span>8 yrs</span><small>Experience</small></div>
+            <div><span>5★</span><small>Client Rated</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let’s work together</h2>
+      <form class="form" action="https://formspree.io/f/xbjwzoqy" method="POST">
+        <input name="name" type="text" placeholder="Your name" required>
+        <input name="_replyto" type="email" placeholder="Email" required>
+        <input name="type" type="text" placeholder="Project / session type">
+        <textarea name="message" rows="5" placeholder="Tell me about your vision…"></textarea>
+        <button class="btn" type="submit">Send Inquiry</button>
+      </form>
+      <div class="reach">
+        <a href="mailto:hello@koygee.com">hello@koygee.com</a>
+        <a href="https://instagram.com/koygee">Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2025 Koy Gee Photography</div>
+  </footer>
+
+  <script>
+    const IMAGES = [{'src': 'images/seattle-waterfront.jpg', 'alt': 'Seattle waterfront skyline and Ferris wheel', 'tags': 'Urban,Seattle,Waterfront'}, {'src': 'images/chinatown-gate.jpg', 'alt': 'Chinatown Gate in Seattle', 'tags': 'Urban,Culture,Seattle'}, {'src': 'images/hotel-monte-vista.jpg', 'alt': 'Hotel Monte Vista neon at night', 'tags': 'Urban,Night,Neon,Flagstaff'}, {'src': 'images/trademark-pagoda.jpg', 'alt': 'Trade Mark pagoda building', 'tags': 'Architecture,Urban,SanFrancisco'}, {'src': 'images/lanterns.jpg', 'alt': 'Lantern-lit street lamp with red lanterns', 'tags': 'Culture,Urban,Details,Seattle'}, {'src': 'images/sf-bw-street.jpg', 'alt': 'Black and white San Francisco street toward Bay Bridge', 'tags': 'Street,BlackWhite,SanFrancisco'}, {'src': 'images/portrait-smile.jpg', 'alt': 'Smiling portrait against textured wall', 'tags': 'Portrait,Street,Color'}, {'src': 'images/chinatown-crossing.jpg', 'alt': 'People crossing Chinatown street under lanterns', 'tags': 'Street,Culture,SanFrancisco'}, {'src': 'images/pagoda-sunrise.jpg', 'alt': 'Pagoda building in soft morning light', 'tags': 'Urban,Architecture,SanFrancisco'}, {'src': 'images/sf-cablecar.jpg', 'alt': 'San Francisco cable car in morning light', 'tags': 'Street,Urban,SanFrancisco'}];
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
