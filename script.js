@@ -58,3 +58,73 @@ function openLightbox(src, alt){
 
 // Initial render
 render(IMAGES);
+
+
+// Collection presets mapping to existing tags
+const collMap = {
+  City: ['Urban','Seattle','SanFrancisco','Architecture'],
+  Night: ['Night','Neon'],
+  People: ['Portrait','Street']
+};
+
+function applyCollection(name){
+  const tags = new Set(collMap[name] || []);
+  if(tags.size === 0){ render(IMAGES); return; }
+  const filtered = IMAGES.filter(i => {
+    const t = i.tags.split(',').map(s=>s.trim());
+    return t.some(x => tags.has(x));
+  });
+  render(filtered);
+}
+
+// Wire collection chips
+document.querySelectorAll('[data-coll]').forEach(ch => {
+  ch.addEventListener('click', e => applyCollection(ch.dataset.coll));
+});
+
+
+// Instagram feed: load iframe if src provided; else show fallback grid
+function renderIgFallback(){
+  const wrap = document.getElementById('igFallback');
+  if(!wrap) return;
+  wrap.hidden = false;
+  // Choose up to 12 recent-looking images (prioritize Street/Urban tags)
+  const preferredTags = new Set(['Street','Urban']);
+  const picks = [];
+  const pool = IMAGES.slice().reverse();
+  for(const item of pool){
+    const t = item.tags.split(',').map(s=>s.trim());
+    const good = t.some(x => preferredTags.has(x));
+    if(good) picks.push(item);
+    if(picks.length >= 12) break;
+  }
+  if(picks.length < 12){
+    for(const item of pool){
+      if(picks.includes(item)) continue;
+      picks.push(item);
+      if(picks.length >= 12) break;
+    }
+  }
+  wrap.innerHTML = '';
+  picks.forEach(p => {
+    const img = document.createElement('img');
+    img.src = p.src;
+    img.alt = p.alt;
+    img.loading = 'lazy';
+    wrap.appendChild(img);
+  });
+}
+
+(function initInstagram(){
+  const iframe = document.getElementById('igFrame');
+  if(!iframe) return;
+  // If a widget URL hasn't been set, show fallback immediately
+  if(!iframe.getAttribute('src')){
+    renderIgFallback();
+    return;
+  }
+  // Otherwise, try to load the iframe; if it errors, show fallback
+  let safety = setTimeout(renderIgFallback, 6000);
+  iframe.addEventListener('load', () => { clearTimeout(safety); });
+  iframe.addEventListener('error', () => { renderIgFallback(); });
+})();

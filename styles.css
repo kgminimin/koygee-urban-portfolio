@@ -45,3 +45,17 @@ input,textarea{background:#0c0e12;border:1px solid #222;border-radius:12px;color
 .lightbox img{max-width:90vw;max-height:85vh;border-radius:10px}
 .lightbox .caption{color:#ccc;margin-top:.5rem;text-align:center}
 .close{position:absolute;top:20px;right:20px;font-size:28px;color:#fff;cursor:pointer}
+
+.collections{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+.collections .label{color:var(--muted);font-size:.9rem;margin-right:.4rem}
+.chip{border:1px solid #333;background:#111;color:var(--muted);padding:.35rem .7rem;border-radius:999px;cursor:pointer}
+.chip:hover{color:#fff}
+
+.instagram{margin-top:2rem;margin-bottom:1rem}
+.ig-note{color:var(--muted);margin-top:-.4rem;margin-bottom:1rem}
+.ig-embed-wrap{position:relative;width:100%;padding-top:100%;background:#0c0e12;border:1px solid #222;border-radius:12px;overflow:hidden}
+.ig-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ig-fallback{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-top:1rem}
+@media(min-width:800px){.ig-fallback{grid-template-columns:repeat(6,1fr)}}
+.ig-fallback img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.ig-cta{margin-top:1rem}

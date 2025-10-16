@@ -8,6 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <meta name="theme-color" content="#0f1115">
+  <link rel="icon" href="images/favicon-kg.png" sizes="any">
+  <meta property="og:title" content="Koy Gee Photography — Urban & Street">
+  <meta property="og:description" content="Urban & street photography portfolio by Koy Gee — Seattle & San Francisco.">
+  <meta property="og:image" content="images/og-koygee.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Koy Gee Photography">
+  <meta name="twitter:description" content="Urban stories through light and motion">
+  <meta name="twitter:image" content="images/og-koygee.jpg">
+
 </head>
 <body>
   <header class="navbar">
@@ -18,7 +30,8 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="https://instagram.com/salmoncreamcheeseraisinbagel">Instagram</a>
-        <a href="#contact" class="btn">Inquire</a>
+        <button id="themeToggle" class="btn btn-outline" style="margin-right:.6rem">Light/Dark</button>
+        <a href="mailto:koy.gee4@gmail.com?subject=Booking%20Inquiry%20—%20Koy%20Gee%20Photography&body=Hi%20Koy%2C%20I%27d%20like%20to%20book%20a%20session..." class="btn">Inquire</a>
       </nav>
     </div>
   </header>
@@ -39,6 +52,14 @@
     <section id="work" class="work">
       <div class="section-head">
         <h2>Selected Work</h2>
+        
+      <div class="collections">
+        <span class="label">Collections:</span>
+        <button class="chip" data-coll="City">City</button>
+        <button class="chip" data-coll="Night">Night</button>
+        <button class="chip" data-coll="People">People</button>
+      </div>
+
         <div class="filters" id="filters"></div>
       </div>
       <div id="gallery" class="masonry"></div>
@@ -98,7 +119,7 @@
       <form class="form" action="https://formsubmit.co/koy.gee4@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="New inquiry — Koy Gee Photography">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_template" value="table">\n        <input type="hidden" name="_autoresponse" value="Thanks for reaching out to Koy Gee Photography! I’ll get back to you within 24 hours.">
         <input name="name" type="text" placeholder="Your name" required>
         <input name="_replyto" type="email" placeholder="Email" required>
         <input name="type" type="text" placeholder="Project / session type">
@@ -171,5 +192,28 @@
 ];
   </script>
   <script src="script.js"></script>
+
+  <script>
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light'){ root.style.setProperty('--bg','#ffffff'); root.style.setProperty('--fg','#111217'); root.style.setProperty('--muted','#5f6670'); root.style.setProperty('--card','#f2f3f5'); }
+    document.getElementById('themeToggle').onclick = () => {
+      const isDark = getComputedStyle(root).getPropertyValue('--bg').trim() === '#0f1115';
+      if(isDark){
+        root.style.setProperty('--bg','#ffffff');
+        root.style.setProperty('--fg','#111217');
+        root.style.setProperty('--muted','#5f6670');
+        root.style.setProperty('--card','#f2f3f5');
+        localStorage.setItem('theme','light');
+      } else {
+        root.style.setProperty('--bg','#0f1115');
+        root.style.setProperty('--fg','#e8eaee');
+        root.style.setProperty('--muted','#a8b0b9');
+        root.style.setProperty('--card','#171a20');
+        localStorage.setItem('theme','dark');
+      }
+    };
+  </script>
 </body>
 </html>
+
