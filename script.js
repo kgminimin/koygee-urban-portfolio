@@ -128,3 +128,28 @@ function renderIgFallback(){
   iframe.addEventListener('load', () => { clearTimeout(safety); });
   iframe.addEventListener('error', () => { renderIgFallback(); });
 })();
+
+
+// Mobile menu toggle
+(function mobileMenu(){
+  const t = document.getElementById('menuToggle');
+  const panel = document.getElementById('mobileMenu');
+  if(!t || !panel) return;
+  const open = () => { panel.hidden = false; document.addEventListener('click', outside, { once:true }); };
+  const close = () => { panel.hidden = true; };
+  const outside = (e) => { if(!panel.contains(e.target) && e.target !== t) close(); };
+  t.addEventListener('click', (e) => {
+    e.stopPropagation();
+    panel.hidden ? open() : close();
+  });
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => close()));
+})();
+
+// Section reveal on scroll
+(function revealOnScroll(){
+  const els = document.querySelectorAll('section, .card');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('reveal','show'); io.unobserve(e.target); } });
+  }, { threshold:.06 });
+  els.forEach(el => io.observe(el));
+})();
